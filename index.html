@@ -275,14 +275,45 @@ select:focus{
     font-weight:800;
 }
 
-.timer-counter{
-    background:#dcfce7;
-    color:#166534;
-    padding:8px 13px;
-    border-radius:999px;
-    font-weight:900;
-    white-space:nowrap;
-}
+.timer-counter{background:#dcfce7;color:#166534;padding:9px 14px;border-radius:999px;font-weight:900;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;min-width:125px;justify-content:center;box-shadow:0 2px 8px rgba(22,101,52,.12)}
+.timer-icon{width:18px;height:18px;flex:0 0 18px}
+.timer-label{font-size:11px;opacity:.8;margin-right:2px;text-transform:uppercase;letter-spacing:.04em}
+.account-grid{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:20px;align-items:start}
+.account-list{display:grid;gap:10px}
+.account-item{border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff;display:flex;justify-content:space-between;gap:15px;align-items:center}
+.account-meta{min-width:0}.account-meta strong{display:block;margin-bottom:3px}
+
+.account-section-folder{border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden;margin-bottom:12px}
+.account-section-folder summary{list-style:none;cursor:pointer;padding:14px 16px;background:#f8fafc;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.account-section-folder summary::-webkit-details-marker{display:none}
+.account-section-folder summary:hover{background:#eff6ff}
+.folder-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.folder-title{display:flex;align-items:center;gap:8px}
+.folder-delete-btn{padding:6px 10px;font-size:12px;white-space:nowrap}
+.account-section-folder .folder-count{font-size:12px;color:var(--muted);font-weight:800}
+.account-section-folder .folder-accounts{padding:10px}
+.account-password{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;letter-spacing:.02em}
+.account-password-wrap{display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap}
+.record-section-folder{border:1px solid var(--border);border-radius:14px;background:#fff;overflow:hidden;margin-bottom:14px}
+.record-section-folder summary{list-style:none;cursor:pointer;padding:15px 17px;background:#f8fafc;font-weight:900;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.record-section-folder summary::-webkit-details-marker{display:none}
+.record-section-folder summary:hover{background:#eff6ff}
+.record-folder-title{display:flex;align-items:center;gap:9px}
+.record-folder-count{font-size:12px;color:var(--muted);font-weight:800}
+.record-folder-body{padding:10px}
+.account-password-label{font-size:12px;color:var(--muted);font-weight:800}
+.account-password-value{background:#f1f5f9;border:1px solid var(--border);border-radius:8px;padding:6px 9px;word-break:break-all}
+.bulk-import-card{margin-top:20px;border:1px solid var(--border);border-radius:14px;background:#fff;padding:18px}
+.bulk-import-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bulk-import-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bulk-import-table-wrap{overflow:auto;margin-top:14px;border:1px solid var(--border);border-radius:10px}
+.bulk-import-table{width:100%;border-collapse:collapse;min-width:680px}
+.bulk-import-table th,.bulk-import-table td{padding:9px 10px;border-bottom:1px solid var(--border);text-align:left;font-size:13px}
+.bulk-import-table th{background:#f8fafc;font-weight:900}
+.bulk-import-table tr:last-child td{border-bottom:0}
+.import-empty{padding:18px;text-align:center;color:var(--muted)}
+.import-note{margin-top:10px;line-height:1.5}
+@media(max-width:900px){.account-grid{grid-template-columns:1fr}}
 
 .timer-counter.warning{background:#fef3c7;color:#92400e}
 .timer-counter.danger{background:#fee2e2;color:#991b1b}
@@ -334,6 +365,14 @@ select:focus{
     margin-bottom:12px;
 }
 
+
+.question-editor-image-wrap{margin-top:10px;padding:12px;border:1px dashed #93c5fd;background:#f8fbff;border-radius:12px}
+.question-editor-image-preview{display:block;max-width:100%;max-height:280px;margin:10px 0;border-radius:10px;border:1px solid var(--border);object-fit:contain;background:#fff}
+.question-image-caption{font-size:12px;color:var(--muted);margin-top:6px}
+.csv-import-card{margin:20px 0;border:1px solid var(--border);border-radius:14px;background:#fff;padding:18px}
+.csv-import-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.csv-import-note{margin-top:10px;line-height:1.5}
+.csv-import-status{margin-top:12px}
 .question-image{
     max-width:100%;
     width:100%;
@@ -730,10 +769,32 @@ select:focus{
     -webkit-touch-callout: default !important;
 }
 
+
+/* LOADING OVERLAY */
+.loading-overlay{position:fixed;inset:0;z-index:5000;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;padding:20px}
+.loading-overlay.hidden{display:none!important}
+.loading-card{width:min(390px,100%);background:#fff;border-radius:18px;padding:30px 24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.loading-spinner{width:52px;height:52px;border:5px solid #dbeafe;border-top-color:var(--primary);border-radius:50%;animation:gqSpin .8s linear infinite;margin:0 auto 18px}
+.loading-message{font-size:18px;font-weight:900;color:var(--dark);margin:0}
+.loading-submessage{font-size:13px;color:var(--muted);margin:8px 0 0}
+@keyframes gqSpin{to{transform:rotate(360deg)}}
+.student-edit-panel{margin-top:12px;padding:15px;border:1px solid #bfdbfe;background:#eff6ff;border-radius:12px}
+.student-edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.student-edit-grid .full-row{grid-column:1/-1}
+@media(max-width:600px){.student-edit-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 
 <body>
+
+<div id="gqLoadingOverlay" class="loading-overlay hidden" aria-live="polite" aria-busy="true">
+  <div class="loading-card">
+    <div class="loading-spinner" aria-hidden="true"></div>
+    <p id="gqLoadingMessage" class="loading-message">Loading...</p>
+    <p id="gqLoadingSubmessage" class="loading-submessage">Please wait.</p>
+  </div>
+</div>
 
 <!-- HOME -->
 <section id="homeScreen" class="screen">
@@ -771,67 +832,18 @@ Teacher Dashboard
 
 
 <!-- STUDENT LOGIN -->
-<section id="studentScreen" class="screen hidden">
-<div class="container">
-
-<div class="card login-card">
-
+<section id="studentScreen" class="screen hidden"><div class="container"><div class="card login-card">
 <h1 id="studentQuizTitle">Quiz</h1>
-
-<p class="subtitle">
-Enter your information to begin.
-</p>
-
+<p class="subtitle">Log in using the email and password created by your teacher.</p>
 <div id="studentError" class="error hidden"></div>
-
-<div class="form-group">
-<label>Student Name</label>
-<input
-    type="text"
-    id="studentName"
-    placeholder="Enter your full name">
-</div>
-
-<div class="form-group">
-<label>Email Address</label>
-<input type="email" id="studentEmail" placeholder="Enter your email address" autocomplete="email">
-</div>
-
-<div class="form-group">
-<label>Class / Section</label>
-<input
-    type="text"
-    id="studentSection"
-    placeholder="Example: Grade 10 - Rizal">
-</div>
-
-<div style="background:#fff7ed;border:1px solid #fed7aa;padding:10px;border-radius:10px;margin-bottom:14px;font-size:13px">
-<strong>Attempt policy:</strong> You have up to <strong>2 attempts</strong> for this quiz. Refreshing the page during your active attempt will restore the same attempt and will not use another attempt.
-</div>
-
-<div class="form-group">
-<label>Quiz Access Code</label>
-<input
-    type="text"
-    id="studentQuizCode"
-    placeholder="Enter quiz code"
-    autocomplete="off">
-</div>
-
-<button class="btn btn-primary full" onclick="startQuiz()">
-Start Quiz
-</button>
-
-<button
-    class="btn btn-secondary full"
-    style="margin-top:10px"
-    onclick="goHome()">
-Back
-</button>
-
-</div>
-</div>
-</section>
+<div class="form-group"><label>Email Address</label><input type="email" id="studentEmail" placeholder="Enter your email address" autocomplete="username"></div>
+<div class="form-group"><label>Password</label><input type="password" id="studentPassword" placeholder="Enter your password" autocomplete="current-password"></div>
+<div class="form-group"><label>Class / Section</label><select id="studentSection"><option value="">Select your class / section</option></select><div class="small" style="margin-top:6px">Select the section assigned to you by your teacher.</div></div>
+<div style="background:#eff6ff;border:1px solid #bfdbfe;padding:10px;border-radius:10px;margin-bottom:14px;font-size:13px"><strong>Privacy:</strong> Your name and account are already registered by your teacher. Do not share your password with other students.</div>
+<div class="form-group"><label>Quiz Access Code</label><input type="text" id="studentQuizCode" placeholder="Enter quiz code" autocomplete="off"><div class="small" style="margin-top:6px">Keep the quiz code as an extra quiz-level security check.</div></div>
+<button class="btn btn-primary full" onclick="studentLoginAndStartQuiz()">Log In &amp; Start Quiz</button>
+<button class="btn btn-secondary full" style="margin-top:10px" onclick="goHome()">Back</button>
+</div></div></section>
 
 
 <!-- TEACHER LOGIN -->
@@ -906,10 +918,7 @@ Back
 <div id="quizStudentName" class="student-label"></div>
 </div>
 
-<div class="security-counter">
-Security Events:
-<span id="securityCount">0</span>/3
-</div>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end"><div id="timerCounter" class="timer-counter hidden" aria-label="Time remaining"><svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5"></path><path d="M9 2h6"></path><path d="M12 2v3"></path></svg><span class="timer-label">Time Left</span><span id="quizTimer">00:00</span></div><div class="security-counter">Security Events: <span id="securityCount">0</span>/3</div></div>
 
 </div>
 </div>
@@ -1002,12 +1011,8 @@ Log Out
 Student Records
 </button>
 
-<button
-    id="editorButton"
-    class="btn btn-secondary"
-    onclick="showAdminSection('editor')">
-Quiz Editor
-</button>
+<button id="editorButton" class="btn btn-secondary" onclick="showAdminSection('editor')">Quiz Editor</button>
+<button id="accountsButton" class="btn btn-secondary" onclick="showAdminSection('accounts')">Student Accounts</button>
 
 </div>
 
@@ -1041,6 +1046,10 @@ margin-bottom:20px;
 
 </div>
 
+
+<!-- STUDENT ACCOUNTS -->
+<div id="accountsSection" class="hidden"><div class="card" style="background:#f8fafc;border:1px solid var(--border)"><h2>Student Accounts</h2><p class="small">Create login credentials for each student. The teacher can view the password saved locally in this browser, and student accounts are grouped into section folders.</p><div id="studentAccountStatus" class="success-message hidden"></div><div id="studentAccountError" class="error hidden"></div><div class="account-grid"><div><div class="form-group"><label>Student Name</label><input type="text" id="accountStudentName" placeholder="Full name"></div><div class="form-group"><label>Email Address</label><input type="email" id="accountStudentEmail" placeholder="student@example.com" autocomplete="off"></div><div class="form-group"><label>Password</label><input type="text" id="accountStudentPassword" placeholder="Set a password" autocomplete="new-password"></div><div class="form-group"><label>Section</label><select id="accountStudentSection"><option value="">Select section</option></select></div><button class="btn btn-success full" type="button" onclick="createStudentAccount()">Create Student Account</button></div><div><h3>Registered Students</h3><div class="small" style="margin-bottom:10px">Only students belonging to your teacher account are shown here.</div><div id="studentAccountsList" class="account-list"><div class="small">Loading student accounts...</div></div></div></div>
+<div class="bulk-import-card"><div class="bulk-import-head"><div><h3 style="margin:0">Import Student Details</h3><div class="small">Import many students at once instead of creating every account manually.</div></div><div class="bulk-import-actions"><input type="file" id="studentImportFile" accept=".csv,.txt,.tsv,.json" class="hidden" onchange="handleStudentImportFile(event)"><button class="btn btn-secondary" type="button" onclick="document.getElementById('studentImportFile').click()">📥 Import CSV / TXT / JSON</button><button class="btn btn-secondary" type="button" onclick="downloadStudentImportTemplate()">📄 Download Template</button></div></div><div class="form-group" style="max-width:360px;margin-top:14px"><label>Default Section (used when Section is missing in the file)</label><select id="studentImportDefaultSection"><option value="">Select section</option></select></div><div class="small import-note"><strong>Accepted columns:</strong> Name, Email, Password, Section. CSV/TSV files can have a header row. If Password is blank, a temporary password will be generated automatically.</div><div id="studentImportStatus" class="small" style="margin-top:12px"></div><div id="studentImportPreview" class="bulk-import-table-wrap"><div class="import-empty">No students imported yet.</div></div><div class="bulk-import-actions" style="margin-top:14px"><button class="btn btn-success" type="button" id="createImportedStudentsButton" onclick="createImportedStudentAccounts()" disabled>✓ Create Imported Accounts</button><button class="btn btn-danger" type="button" onclick="clearStudentImport()">Clear Import</button></div></div></div></div>
 
 <!-- RECORDS -->
 <div id="recordsSection">
@@ -1143,6 +1152,17 @@ Export
 </div>
 
 <div class="form-group">
+<label>Allowed Classes / Sections</label>
+<textarea
+    id="quizSectionsInput"
+    placeholder="One section per line. Example:
+Grade 11 - Gemini
+Grade 11 - Libra
+Grade 11 - Taurus"></textarea>
+<div class="small" style="margin-top:6px">Students will choose from these sections when logging in.</div>
+</div>
+
+<div class="form-group">
 <label>Quiz Timer (minutes)</label>
 <input
     type="number"
@@ -1238,7 +1258,7 @@ Export Quiz
 <button
     class="btn btn-secondary"
     onclick="document.getElementById('importFile').click()">
-Import Quiz
+Import Quiz JSON
 </button>
 
 <input
@@ -1247,6 +1267,26 @@ Import Quiz
     class="hidden"
     accept=".json"
     onchange="importQuiz(event)">
+
+<button
+    class="btn btn-secondary"
+    onclick="document.getElementById('importCsvFile').click()">
+Import Questions CSV
+</button>
+
+<input
+    type="file"
+    id="importCsvFile"
+    class="hidden"
+    accept=".csv,.txt,.tsv"
+    onchange="importQuestionsCSV(event)">
+
+<button
+    class="btn btn-secondary"
+    type="button"
+    onclick="downloadQuizCsvTemplate()">
+Download CSV Template
+</button>
 
 </div>
 
@@ -1322,11 +1362,17 @@ Close
    Uses Google Apps Script as the central database.
    No Google Sheet is required for the quiz/record storage.
 ========================================================= */
-const API_URL = "https://script.google.com/macros/s/AKfycbyA6DmL44J7TT47PgrzJ4N_Ug3NfRCqsZxWeao8gq_TQu5qf7frVCucvUcHOf_7X-D8QQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbw5FBEYfHn7vhkj15RPH7ems--ABJi5WMaD8zHG1icjb9bP5YazPRcFkRneNBy3Jgi02g/exec";
+const PUBLISHED_CACHE_KEY = "garthquiz_published_cache_v1";
+const PUBLISHED_CACHE_TTL = 30000;
+const TEACHER_CACHE_KEY = "garthquiz_teacher_cache_v1";
+const TEACHER_CACHE_TTL = 10000;
+let teacherDataRefreshPromise = null;
 
 const QUIZ_KEY = "classquiz_pro_v4_quizzes";
 const RECORD_KEY = "classquiz_pro_v4_records";
 const SESSION_KEY = "classquiz_pro_v4_teacher_token";
+const STUDENT_SESSION_KEY = "classquiz_pro_v4_student_token";
 
 let currentTeacher = null;
 let currentStudentTeacherId = null;
@@ -1336,7 +1382,8 @@ let publishedQuizzes = [];
    GOOGLE SHEETS CONNECTION
    Paste your deployed Google Apps Script Web App URL here.
 ========================================================= */
-const GOOGLE_SHEETS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzPWcxEf73GXPD1DPaC-VFAlnAEnsqrnvzUSG1HnlNx5J3zf0xlunldq_3nzUlUZxKtMw/exec";
+const GOOGLE_SHEETS_WEB_APP_URL = API_URL;
+// The same deployed Apps Script endpoint is used for quizzes, student records, and teacher data.
 
 
 let quizzes = {};
@@ -1420,6 +1467,7 @@ function showScreen(id){
         "homeScreen",
         "studentScreen",
         "teacherLoginScreen",
+        "teacherRegisterScreen",
         "quizScreen",
         "resultScreen",
         "adminScreen"
@@ -1442,6 +1490,7 @@ function createQuestion(type="multiple"){
             id:generateId("question"),
             type:"identification",
             question:"New identification question",
+            image:"",
             acceptedAnswers:["Correct answer"]
         };
     }
@@ -1451,6 +1500,7 @@ function createQuestion(type="multiple"){
             id:generateId("question"),
             type:"enumeration",
             question:"New enumeration question",
+            image:"",
             requiredAnswers:[
                 "Freshwater",
                 "Saltwater",
@@ -1467,6 +1517,7 @@ function createQuestion(type="multiple"){
         id:generateId("question"),
         type:"multiple",
         question:"New multiple choice question",
+        image:"",
         options:[
             "Choice A",
             "Choice B",
@@ -1489,6 +1540,8 @@ function createQuiz(number){
 
         instructions:
             "Read each question carefully and answer all questions.",
+
+        sections:[],
 
         timerMinutes:0,
 
@@ -1688,6 +1741,13 @@ function repairQuiz(quiz,number){
         quiz.instructions = "";
     }
 
+    if(!Array.isArray(quiz.sections)){
+        quiz.sections = [];
+    }
+    quiz.sections = [...new Set(
+        quiz.sections.map(section => String(section || "").trim()).filter(Boolean)
+    )];
+
     quiz.timerMinutes = Math.max(0, Math.floor(Number(quiz.timerMinutes) || 0));
 
     if(quiz.questionSelectionMode !== "random"){
@@ -1766,36 +1826,87 @@ function saveQuizzes(){
 
 async function apiRequest(action, data = {}, method = "POST"){
     const payload = {action, ...data};
+    const url = API_URL;
+    if(!url){
+        throw new Error("Google Apps Script API URL is not configured.");
+    }
+
+    let response;
     if(method === "GET"){
         const qs = new URLSearchParams(payload).toString();
-        const response = await fetch(API_URL + "?" + qs);
-        return await response.json();
+        response = await fetch(url + "?" + qs, {
+            method:"GET",
+            cache:"default"
+        });
+    }else{
+        response = await fetch(url, {
+            method:"POST",
+            headers:{"Content-Type":"text/plain;charset=utf-8"},
+            body:JSON.stringify(payload),
+            cache:"no-store"
+        });
     }
-    const response = await fetch(API_URL, {
-        method:"POST",
-        body:JSON.stringify(payload)
-    });
-    return await response.json();
+
+    const text = await response.text();
+    let result;
+    try{
+        result = JSON.parse(text);
+    }catch(error){
+        throw new Error("Google Apps Script returned an invalid response. HTTP " + response.status);
+    }
+
+    if(!response.ok){
+        throw new Error((result && result.error) || ("Google Apps Script request failed. HTTP " + response.status));
+    }
+    return result;
 }
 
-async function loadPublishedQuizzes(){
+async function loadPublishedQuizzes(force=false){
+    const now=Date.now();
+    if(!force){
+        try{
+            const cached=JSON.parse(localStorage.getItem(PUBLISHED_CACHE_KEY)||"null");
+            if(cached && Array.isArray(cached.quizzes) && now-Number(cached.time||0)<PUBLISHED_CACHE_TTL){
+                publishedQuizzes=cached.quizzes;
+                renderHomeQuizzes();
+                return true;
+            }
+        }catch(e){}
+    }
     try{
-        const data = await apiRequest("getPublishedQuizzes", {}, "GET");
-        publishedQuizzes = data && data.ok && Array.isArray(data.quizzes)
-            ? data.quizzes
-            : [];
+        const data=await apiRequest("getPublishedQuizzes", {}, "GET");
+        publishedQuizzes=data && data.ok && Array.isArray(data.quizzes) ? data.quizzes : [];
+        try{ localStorage.setItem(PUBLISHED_CACHE_KEY, JSON.stringify({time:now,quizzes:publishedQuizzes})); }catch(e){}
     }catch(error){
         console.error(error);
-        publishedQuizzes = [];
+        try{
+            const cached=JSON.parse(localStorage.getItem(PUBLISHED_CACHE_KEY)||"null");
+            publishedQuizzes=cached && Array.isArray(cached.quizzes) ? cached.quizzes : [];
+        }catch(e){ publishedQuizzes=[]; }
     }
     renderHomeQuizzes();
+    return true;
 }
 
-async function loadTeacherData(){
+async function loadTeacherData(force=false){
     const token = sessionStorage.getItem(SESSION_KEY);
     if(!token) return false;
+    if(teacherDataRefreshPromise) return teacherDataRefreshPromise;
 
-    try{
+    const refresh = async()=>{
+      try{
+        if(!force){
+            try{
+                const cached=JSON.parse(sessionStorage.getItem(TEACHER_CACHE_KEY)||"null");
+                if(cached && cached.token===token && Date.now()-Number(cached.time||0)<TEACHER_CACHE_TTL && cached.teacher){
+                    currentTeacher=cached.teacher;
+                    quizzes={}; records={};
+                    (cached.quizzes||[]).forEach(q=>{ quizzes[q.id]=repairQuiz(q,q.id); });
+                    (cached.records||[]).forEach(r=>{ if(!records[r.quizNumber]) records[r.quizNumber]=[]; records[r.quizNumber].push(r); });
+                    return true;
+                }
+            }catch(e){}
+        }
         const data = await apiRequest("getTeacherData", {token}, "GET");
         if(!data || !data.ok) return false;
 
@@ -1829,11 +1940,15 @@ async function loadTeacherData(){
 
         saveQuizzes();
         saveRecords();
+        try{ sessionStorage.setItem(TEACHER_CACHE_KEY, JSON.stringify({time:Date.now(),token,teacher:currentTeacher,quizzes:Object.values(quizzes),records:Object.values(records).flat()})); }catch(e){}
         return true;
-    }catch(error){
+      }catch(error){
         console.error(error);
         return false;
-    }
+      }
+    };
+    teacherDataRefreshPromise=refresh();
+    try{return await teacherDataRefreshPromise;}finally{teacherDataRefreshPromise=null;}
 }
 
 async function saveQuizToGoogleSheets(quiz){
@@ -1843,6 +1958,7 @@ async function saveQuizToGoogleSheets(quiz){
             token: sessionStorage.getItem(SESSION_KEY),
             quiz: clone(quiz)
         });
+        if(data && data.ok){ try{ sessionStorage.removeItem(TEACHER_CACHE_KEY); }catch(e){} }
         return !!(data && data.ok);
     }catch(error){
         console.error(error);
@@ -1918,7 +2034,7 @@ function renderHomeQuizzes(){
             <div class="card center" style="grid-column:1/-1;background:#f8fafc">
                 <h3>No Published Quizzes</h3>
                 <p class="small">Your teacher has not published a quiz yet. Refresh this page after your teacher publishes one.</p>
-                <button class="btn btn-primary" onclick="loadPublishedQuizzes()">Refresh Published Quizzes</button>
+                <button class="btn btn-primary" onclick="loadPublishedQuizzes(true)">Refresh Published Quizzes</button>
             </div>`;
         return;
     }
@@ -1955,21 +2071,52 @@ function renderHomeQuizzes(){
 ========================================================= */
 
 function selectQuiz(item){
-    currentStudentTeacherId = item.teacherId;
-    currentStudentQuiz = Number(item.quiz.id);
-    currentQuiz = clone(item.quiz);
-
-    $("studentQuizTitle").textContent = currentQuiz.title;
-    $("studentName").value = "";
-    $("studentEmail").value = "";
-    $("studentSection").value = "";
-    $("studentQuizCode").value = "";
+    currentStudentTeacherId=item.teacherId;
+    currentStudentQuiz=Number(item.quiz.id);
+    currentQuiz=clone(item.quiz);
+    $("studentQuizTitle").textContent=currentQuiz.title;
+    $("studentEmail").value="";
+    $("studentPassword").value="";
+    populateStudentSections(currentQuiz);
+    $("studentSection").value="";
+    $("studentQuizCode").value="";
     $("studentError").classList.add("hidden");
-
     showScreen("studentScreen");
-    setTimeout(()=>$("studentName").focus(),100);
+    setTimeout(()=>$("studentEmail").focus(),100);
 }
 
+function showGqLoading(message,submessage="Please wait..."){
+    const overlay=$("gqLoadingOverlay");
+    if(!overlay)return;
+    $("gqLoadingMessage").textContent=message;
+    $("gqLoadingSubmessage").textContent=submessage;
+    overlay.classList.remove("hidden");
+}
+function hideGqLoading(){$("gqLoadingOverlay")?.classList.add("hidden");}
+
+async function studentLoginAndStartQuiz(){
+    const email=gqNormalizeEmail($("studentEmail").value), password=$("studentPassword").value, section=$("studentSection").value.trim(), error=$("studentError");
+    error.classList.add("hidden");
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){error.textContent="Please enter the email address provided by your teacher.";error.classList.remove("hidden");return;}
+    if(!password){error.textContent="Please enter your password.";error.classList.remove("hidden");return;}
+    if(!section){error.textContent="Please select your class / section.";error.classList.remove("hidden");return;}
+    const quiz=currentQuiz || getQuiz(currentStudentQuiz);
+    if(Array.isArray(quiz.sections)&&quiz.sections.length&&!quiz.sections.includes(section)){error.textContent="Please select a valid class / section.";error.classList.remove("hidden");return;}
+    const code=$("studentQuizCode").value.trim().toUpperCase();
+    if(!code){error.textContent="Please enter the quiz access code.";error.classList.remove("hidden");return;}
+    if(code!==String(quiz.code).trim().toUpperCase()){error.textContent="Incorrect quiz access code.";error.classList.remove("hidden");return;}
+    showGqLoading("Verifying your account...","Please wait while we verify your student account.");
+    try{
+        const auth=await apiRequest("loginStudent",{email,password,section,teacherId:currentStudentTeacherId});
+        if(!auth||!auth.ok||!auth.student){hideGqLoading();error.textContent=auth?.message||"Incorrect email, password, or section.";error.classList.remove("hidden");return;}
+        if(String(auth.student.teacherId||currentStudentTeacherId)!==String(currentStudentTeacherId)){hideGqLoading();error.textContent="This student account does not belong to the selected teacher.";error.classList.remove("hidden");return;}
+        if(auth.token)sessionStorage.setItem(STUDENT_SESSION_KEY,auth.token);
+        currentStudent=auth.student.name;currentStudentEmail=gqNormalizeEmail(auth.student.email||email);currentStudentSection=auth.student.section||section;window.gqStudentEmail=currentStudentEmail;
+        showGqLoading("Preparing your quiz...","Your account is verified. Preparing your quiz now.");
+        await startQuiz();
+        hideGqLoading();
+    }catch(e){console.error(e);hideGqLoading();error.textContent="Student login failed. Please check your internet connection and try again.";error.classList.remove("hidden");}
+}
 
 function gqShuffle(array){
     const a = array.slice();
@@ -2019,13 +2166,26 @@ function gqPresentationForAttempt(email, quizNumber, existingRecord=null){
     return local?.presentation || existingRecord?.presentation || null;
 }
 
+function populateStudentSections(quiz){
+    const select = $("studentSection");
+    if(!select) return;
+
+    const sections = Array.isArray(quiz?.sections) ? quiz.sections.filter(Boolean) : [];
+    select.innerHTML =
+        '<option value="">Select your class / section</option>' +
+        sections.map(section => `<option value="${escapeHTML(section)}">${escapeHTML(section)}</option>`).join("");
+
+    if(!sections.length){
+        select.innerHTML = '<option value="">No sections have been set by the teacher</option>';
+    }
+}
+
 async function startQuiz(){
 
-    const name =
-        $("studentName").value.trim();
+    const name = currentStudent || "";
 
     const email =
-        gqNormalizeEmail($("studentEmail") ? $("studentEmail").value : "");
+        gqNormalizeEmail($("studentEmail") ? $("studentEmail").value : currentStudentEmail);
 
     const section =
         $("studentSection").value.trim();
@@ -2044,15 +2204,7 @@ async function startQuiz(){
 
     error.classList.add("hidden");
 
-    if(!name){
-
-        error.textContent =
-            "Please enter your name.";
-
-        error.classList.remove("hidden");
-
-        return;
-    }
+    if(!name){error.textContent="Please log in with the student account created by your teacher.";error.classList.remove("hidden");return;}
 
     if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
 
@@ -2065,7 +2217,16 @@ async function startQuiz(){
     if(!section){
 
         error.textContent =
-            "Please enter your class / section.";
+            "Please select your class / section.";
+
+        error.classList.remove("hidden");
+
+        return;
+    }
+
+    if(Array.isArray(quiz.sections) && quiz.sections.length && !quiz.sections.includes(section)){
+        error.textContent =
+            "Please select a valid class / section.";
 
         error.classList.remove("hidden");
 
@@ -2158,86 +2319,81 @@ async function startQuiz(){
 
     records[currentStudentQuiz] = records[currentStudentQuiz] || [];
 
-    // If this is the same active attempt being resumed, reuse the existing
-    // dashboard record instead of creating a second row.
-    let existingAttemptRecord = null;
-    if(guard.resume && attemptId){
-        existingAttemptRecord = records[currentStudentQuiz].find(r =>
-            String(r.attemptId || "") === String(attemptId) &&
-            String(r.email || "").trim().toLowerCase() === currentStudentEmail
-        ) || null;
-    }
-
-    const isResuming = !!existingAttemptRecord;
-
+    // Every approved login creates a NEW record with a NEW attempt ID.
+    // This is required so the server can distinguish Attempt 1 from Attempt 2
+    // and permanently block Attempt 3.
     const savedAttemptState = gqGetAttempt(email, currentStudentQuiz);
     answers = Array.isArray(savedAttemptState?.answers) && savedAttemptState.answers.length === currentQuiz.questions.length
         ? clone(savedAttemptState.answers)
         : new Array(currentQuiz.questions.length).fill(null);
 
-    securityEvents = isResuming
-        ? Number(existingAttemptRecord.securityEvents || 0)
-        : 0;
-
+    securityEvents = 0;
     quizStarted = true;
     quizSubmitted = false;
     submitting = false;
+    quizStartedAt = new Date().toISOString();
 
-    quizStartedAt = isResuming
-        ? (existingAttemptRecord.startedAt || new Date().toISOString())
-        : new Date().toISOString();
+    /* ONE STUDENT ROW / TWO ATTEMPTS: reuse the existing row. */
+    const existingStudentRow = (records[currentStudentQuiz] || []).find(r =>
+        String(r.email || "").trim().toLowerCase() === String(currentStudentEmail || "").trim().toLowerCase()
+    );
 
-    currentRecordId = isResuming
-        ? existingAttemptRecord.id
-        : generateId("record");
+    currentRecordId = existingStudentRow?.id || generateId("record");
+    attemptId = generateId("attempt");
 
-    // Create the dashboard record only for a new attempt. When an active
-    // attempt is resumed, update the same record ID so one attempt = one row.
-    const startRecord = isResuming
-        ? Object.assign(existingAttemptRecord, {
-            student:currentStudent,
-            email:currentStudentEmail,
-            section:currentStudentSection,
-            lastAction:"Resumed quiz",
-            lastActivityAt:new Date().toISOString(),
-            securityEvents,
-            status:"In Progress"
-        })
-        : {
+    const startRecord = {
+        id:currentRecordId,
+        attemptId,
+        teacherId:currentStudentTeacherId,
+        quizNumber:currentStudentQuiz,
+        quizTitle:currentQuiz.title,
+        student:currentStudent,
+        email:currentStudentEmail,
+        section:currentStudentSection,
+        correct:0,
+        total:currentQuiz.questions.reduce((sum,q)=>sum + getQuestionScore(q,null).maxPoints,0),
+        percentage:0,
+        securityEvents:0,
+        automatic:false,
+        status:"In Progress",
+        submissionType:"Started",
+        startedAt:quizStartedAt,
+        submittedAt:null,
+        lastAction:"Started quiz",
+        lastActivityAt:quizStartedAt,
+        answeredCount:0,
+        currentQuestion:1,
+        attemptNumber,
+        maxAttempts:2,
+        loginCount:Number(existingStudentRow?.loginCount || 0) + 1,
+        attemptsUsed:Math.max(Number(existingStudentRow?.attemptsUsed || 0), Number(attemptNumber || 1)),
+        presentation:attemptPresentation,
+        answers:clone(answers),
+        detailedAnswers:currentQuiz.questions.map((question,index)=>({
+            number:index+1, type:question.type, question:question.question,
+            studentAnswer:null, selected:null, correct:null, isCorrect:false
+        }))
+    };
+
+    const existingRowIndex = records[currentStudentQuiz].findIndex(r =>
+        String(r.id || "") === String(currentRecordId)
+    );
+
+    if(existingRowIndex >= 0){
+        records[currentStudentQuiz][existingRowIndex] = {
+            ...records[currentStudentQuiz][existingRowIndex],
+            ...startRecord,
             id:currentRecordId,
-            attemptId,
-            teacherId:currentStudentTeacherId,
-            quizNumber:currentStudentQuiz,
-            quizTitle:currentQuiz.title,
-            student:currentStudent,
-            email:currentStudentEmail,
-            section:currentStudentSection,
-            correct:0,
-            total:currentQuiz.questions.reduce((sum,q)=>sum + getQuestionScore(q,null).maxPoints,0),
-            percentage:0,
-            securityEvents:0,
-            automatic:false,
-            status:"In Progress",
-            submissionType:"Started",
-            startedAt:quizStartedAt,
-            submittedAt:null,
-            lastAction:"Started quiz",
-            lastActivityAt:quizStartedAt,
-            answeredCount:0,
-            currentQuestion:1,
-            presentation:attemptPresentation,
-            answers:clone(answers),
-            detailedAnswers:currentQuiz.questions.map((question,index)=>({
-                number:index+1, type:question.type, question:question.question,
-                studentAnswer:null, selected:null, correct:null, isCorrect:false
-            }))
+            attemptsUsed:Math.max(
+                Number(records[currentStudentQuiz][existingRowIndex].attemptsUsed || 0),
+                Number(attemptNumber || 1)
+            )
         };
-
-    if(!isResuming){
+    }else{
         records[currentStudentQuiz].push(startRecord);
     }
 
-    records[currentStudentQuiz] = dedupeRecordsByAttempt(dedupeRecordsById(records[currentStudentQuiz]));
+    records[currentStudentQuiz] = dedupeRecordsById(records[currentStudentQuiz]);
     saveRecords();
     sendToGoogleSheets(startRecord, "save").then(response=>{
         if(!response || !response.ok) console.error("Could not save in-progress record", response);
@@ -2381,6 +2537,8 @@ function renderQuiz(){
             <div class="question-type">
                 ${typeName}
             </div>
+
+            ${question.image ? `<img class="question-image" src="${escapeHTML(question.image)}" alt="Question picture" draggable="false">` : ""}
 
             <div class="question-text"></div>
 
@@ -2710,17 +2868,27 @@ function getEnumerationResult(question, studentAnswer){
         });
     }
 
-    const maxPoints =
-        Math.max(
-            1,
-            Number(question.studentAnswerCount) ||
-            required.length
-        );
+    // ENUMERATION SCORING:
+    // Every correct answer is worth exactly 1 point.
+    // The number of points available is based on the number of
+    // answer boxes given to the student (or all required answers
+    // when studentAnswerCount is not configured).
+    const answerSlots = Number(question.studentAnswerCount);
+    const maxPoints = Math.max(
+        1,
+        Number.isFinite(answerSlots) && answerSlots > 0
+            ? Math.min(Math.floor(answerSlots), required.length)
+            : required.length
+    );
+
+    const points = Math.min(matched, maxPoints);
 
     return {
-        points:Math.min(matched, maxPoints),
+        points,
         maxPoints,
-        isCorrect:matched === maxPoints,
+        // Fully correct means all available answer slots are correct.
+        // Partial enumeration answers still receive their earned points.
+        isCorrect: points === maxPoints,
         matched,
         provided
     };
@@ -2849,19 +3017,49 @@ function googleSheetsConnected(){
 
 
 async function sendToGoogleSheets(record, action="save"){
-    const token = sessionStorage.getItem(SESSION_KEY);
+    const teacherToken = sessionStorage.getItem(SESSION_KEY);
+    const studentToken = sessionStorage.getItem(STUDENT_SESSION_KEY);
+
+    // IMPORTANT: while a student is taking a quiz, always prefer the
+    // student token. A teacher token can remain in the same browser session
+    // and would otherwise be selected by isTeacher().
+    const studentMode = !!studentToken && !!currentStudentEmail && !!currentStudentTeacherId;
+    const token = action === "save"
+        ? (studentMode ? studentToken : teacherToken)
+        : teacherToken;
 
     try{
+        if(!token){
+            throw new Error("No active session token is available for this result.");
+        }
+
         if(action === "save"){
-            return await apiRequest("saveRecord", {
-                token: record.teacherId ? token : "",
-                record: clone(record)
-            });
+            // Use the authenticated student's teacherId when available.
+            const payload = clone(record);
+            if(studentMode){
+                payload.teacherId = String(currentStudentTeacherId);
+            }
+
+            let lastError = null;
+            for(let attempt=1; attempt<=3; attempt++){
+                try{
+                    const result = await apiRequest("saveRecord", {
+                        token,
+                        record: payload
+                    });
+                    if(result && result.ok) return result;
+                    lastError = new Error((result && (result.message || result.error)) || "The server rejected the quiz result.");
+                }catch(error){
+                    lastError = error;
+                }
+                if(attempt < 3) await new Promise(resolve=>setTimeout(resolve, 800 * attempt));
+            }
+            throw lastError || new Error("The quiz result could not be saved.");
         }
 
         if(action === "delete"){
             return await apiRequest("deleteRecord", {
-                token,
+                token: teacherToken,
                 recordId: record.id,
                 quizNumber: record.quizNumber
             });
@@ -2869,15 +3067,16 @@ async function sendToGoogleSheets(record, action="save"){
 
         if(action === "deleteAll"){
             return await apiRequest("deleteAllRecords", {
-                token,
+                token: teacherToken,
                 quizNumber: record.quizNumber
             });
         }
     }catch(error){
-        console.error(error);
+        console.error("GarthQuiz Google Sheets sync error:", error);
+        return {ok:false, message:error && error.message ? error.message : String(error)};
     }
 
-    return {ok:false};
+    return {ok:false, message:"Unknown synchronization action."};
 }
 
 function dedupeRecordsById(list){
@@ -2927,6 +3126,46 @@ function dedupeRecordsByAttempt(list){
             map.set(key, record);
         }
     });
+    return Array.from(map.values());
+}
+
+function studentRecordId(email, quizNumber){
+    const normalized = gqNormalizeEmail(email);
+    let hash = 0;
+    const value = normalized + "|" + Number(quizNumber || 0);
+
+    for(let i=0;i<value.length;i++){
+        hash = ((hash << 5) - hash) + value.charCodeAt(i);
+        hash |= 0;
+    }
+
+    return "student_" + Math.abs(hash) + "_" + Number(quizNumber || 0);
+}
+
+function dedupeStudentRecords(list){
+    const map = new Map();
+
+    (Array.isArray(list) ? list : []).forEach(record=>{
+        if(!record) return;
+        const email = String(record.email || "").trim().toLowerCase();
+        const key = [String(record.teacherId || ""), Number(record.quizNumber || 0), email].join("|");
+
+        if(!email){
+            map.set(String(record.id || generateId("record")), record);
+            return;
+        }
+
+        const old = map.get(key);
+        if(!old){
+            map.set(key, record);
+            return;
+        }
+
+        const oldTime = new Date(old.lastActivityAt || old.submittedAt || old.startedAt || 0).getTime();
+        const newTime = new Date(record.lastActivityAt || record.submittedAt || record.startedAt || 0).getTime();
+        if(newTime >= oldTime) map.set(key, record);
+    });
+
     return Array.from(map.values());
 }
 
@@ -2985,7 +3224,7 @@ function syncInProgressActivity(action,currentQuestion){
     record.answeredCount=answers.filter(isAnswered).length; record.currentQuestion=currentQuestion || record.currentQuestion || 1;
     record.securityEvents=securityEvents; record.status="In Progress"; record.answers=clone(answers); saveRecords();
     clearTimeout(activitySyncTimer);
-    activitySyncTimer=setTimeout(()=>sendToGoogleSheets(record,"save").catch(()=>{}),300);
+    activitySyncTimer=setTimeout(()=>sendToGoogleSheets(record,"save").catch(()=>{}),1200);
 }
 function startLiveMonitor(){
     clearInterval(liveMonitorInterval); if(!isTeacher()) return;
@@ -2999,7 +3238,7 @@ function startLiveMonitor(){
             renderLiveStudents(clean);
         }
         const st=$("liveMonitorStatus"); if(st) st.textContent="Updated "+new Date().toLocaleTimeString();
-    },3000);
+    },8000);
 }
 function renderLiveStudents(all){
     const box=$("liveStudentsContainer"); if(!box) return;
@@ -3113,6 +3352,7 @@ async function submitQuiz(autoSubmitted, submissionReason=""){
     }
 
     submitting = true;
+    showGqLoading("Submitting your quiz...","Please wait while your answers are saved.");
     stopQuizTimer();
 
     let correct = 0;
@@ -3239,13 +3479,20 @@ async function submitQuiz(autoSubmitted, submissionReason=""){
     const saveResponse = await sendToGoogleSheets(record, "save");
     if(!saveResponse || !saveResponse.ok){
         console.error("GarthQuiz result save failed:", saveResponse);
-        alert("The quiz result could not be synchronized to the teacher dashboard. Please notify your teacher.");
+        const reason = saveResponse && saveResponse.message ? "\n\nServer: " + saveResponse.message : "";
+        alert("The quiz result could not be synchronized to the teacher dashboard." + reason + "\n\nPlease keep this page open and notify your teacher.");
+        submitting = false;
+        hideGqLoading();
+        // Do NOT remove the student token. This lets the user retry instead of losing the result.
+        return;
     }
 
     quizSubmitted = true;
     quizStarted = false;
     submitting = false;
     gqStopHeartbeat();
+    // The result has already been sent; clear the student backend session.
+    sessionStorage.removeItem(STUDENT_SESSION_KEY);
 
     if(window.gqStudentEmail){
         const done = gqGetAttempt(window.gqStudentEmail, currentStudentQuiz) || {};
@@ -3264,6 +3511,7 @@ async function submitQuiz(autoSubmitted, submissionReason=""){
     exitFullscreen();
 
     showResult(record);
+    hideGqLoading();
 }
 
 
@@ -3759,44 +4007,24 @@ async function registerTeacher(){
 }
 
 async function teacherLogin(){
-    const username = $("teacherUsername").value.trim();
-    const password = $("teacherPassword").value;
-    const error = $("teacherLoginError");
-
+    const username=$("teacherUsername").value.trim();
+    const password=$("teacherPassword").value;
+    const error=$("teacherLoginError");
     error.classList.add("hidden");
-
-    if(!username || !password){
-        error.textContent = "Enter your username and password.";
-        error.classList.remove("hidden");
-        return;
-    }
-
+    if(!username||!password){error.textContent="Enter your username and password.";error.classList.remove("hidden");return;}
+    showGqLoading("Signing in...","Verifying your teacher account.");
     try{
-        const data = await apiRequest("loginTeacher", {username, password});
-
-        if(!data || !data.ok){
-            error.textContent = data && data.message ? data.message : "Incorrect username or password.";
-            error.classList.remove("hidden");
-            return;
-        }
-
-        sessionStorage.setItem(SESSION_KEY, data.token);
-        currentTeacher = data.teacher;
-
-        const loaded = await loadTeacherData();
-        if(!loaded){
-            sessionStorage.removeItem(SESSION_KEY);
-            error.textContent = "Login succeeded, but the teacher data could not be loaded.";
-            error.classList.remove("hidden");
-            return;
-        }
-
-        $("teacherDisplay").textContent = currentTeacher.name || currentTeacher.username;
+        const data=await apiRequest("loginTeacher",{username,password});
+        if(!data||!data.ok){hideGqLoading();error.textContent=data&&data.message?data.message:"Incorrect username or password.";error.classList.remove("hidden");return;}
+        sessionStorage.setItem(SESSION_KEY,data.token);
+        currentTeacher=data.teacher;
+        showGqLoading("Loading your dashboard...","Loading your quizzes, records, and student accounts.");
+        const loaded=await loadTeacherData();
+        if(!loaded){sessionStorage.removeItem(SESSION_KEY);hideGqLoading();error.textContent="Login succeeded, but the teacher data could not be loaded.";error.classList.remove("hidden");return;}
+        $("teacherDisplay").textContent=currentTeacher.name||currentTeacher.username;
         showAdminDashboard();
-    }catch(e){
-        error.textContent = "Server connection failed. Please check the deployed Apps Script URL.";
-        error.classList.remove("hidden");
-    }
+        hideGqLoading();
+    }catch(e){hideGqLoading();error.textContent="Server connection failed. Please check the deployed Apps Script URL.";error.classList.remove("hidden");}
 }
 
 function isTeacher(){
@@ -3810,6 +4038,7 @@ async function teacherLogout(){
     }
 
     sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(TEACHER_CACHE_KEY);
     currentTeacher = null;
     quizzes = {};
     records = {};
@@ -3830,54 +4059,272 @@ function showAdminDashboard(){
 }
 
 /* =========================================================
+   STUDENT ACCOUNTS
+   Account data is handled by the secure teacher backend.
+   The frontend never stores student passwords.
+========================================================= */
+function showAccountMessage(message,type="success"){const success=$("studentAccountStatus"),error=$("studentAccountError");success?.classList.add("hidden");error?.classList.add("hidden");const box=type==="error"?error:success;if(box){box.textContent=message;box.classList.remove("hidden");}}
+function populateAccountSections(){const selects=[$("accountStudentSection"),$("studentImportDefaultSection")].filter(Boolean);const sections=new Set();Object.values(quizzes||{}).forEach(q=>(q.sections||[]).forEach(x=>{if(String(x).trim())sections.add(String(x).trim())}));const values=[...sections].sort((a,b)=>a.localeCompare(b));selects.forEach(select=>{select.innerHTML='<option value="">Select section</option>'+values.map(x=>`<option value="${escapeHTML(x)}">${escapeHTML(x)}</option>`).join("");if(!values.length)select.innerHTML='<option value="">Add sections in Quiz Editor first</option>';});}
+async function createStudentAccount(){
+    if(!isTeacher()) return;
+    const name=$("accountStudentName").value.trim();
+    const email=gqNormalizeEmail($("accountStudentEmail").value);
+    const password=$("accountStudentPassword").value;
+    const section=$("accountStudentSection").value.trim();
+    $("studentAccountStatus")?.classList.add("hidden");
+    $("studentAccountError")?.classList.add("hidden");
+    if(!name||!email||!password||!section){showAccountMessage("Please complete the name, email, password, and section.","error");return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showAccountMessage("Please enter a valid email address.","error");return;}
+    if(password.length<6){showAccountMessage("Password must be at least 6 characters.","error");return;}
+    try{
+        const data=await apiRequest("createStudentAccount",{token:sessionStorage.getItem(SESSION_KEY),name,email,password,section});
+        if(!data||!data.ok){showAccountMessage(data?.message||"Could not create the student account.","error");return;}
+        saveStudentPassword(email,password);
+        $("accountStudentName").value="";$("accountStudentEmail").value="";$("accountStudentPassword").value="";$("accountStudentSection").value="";
+        showAccountMessage("Student account created successfully.");
+        await loadStudentAccounts();
+    }catch(e){console.error(e);showAccountMessage("Server connection failed. Please try again.","error");}
+}
+
+async function deleteStudentAccountFolder(section){
+    if(!isTeacher()||!section)return;
+    const accounts=Array.isArray(window.__gqStudentAccounts)?window.__gqStudentAccounts:[];
+    const members=accounts.filter(student=>String(student.section||"No section").trim()===section);
+    if(!members.length){await loadStudentAccounts();return;}
+    if(!confirm(`Delete the "${section}" folder and all ${members.length} student account${members.length===1?"":"s"} inside it?\n\nThis will permanently delete these student accounts.`))return;
+    showAccountMessage(`Deleting ${members.length} account${members.length===1?"":"s"} from ${section}...`);
+    let failed=0;
+    for(const student of members){
+        try{
+            const data=await apiRequest("deleteStudentAccount",{token:sessionStorage.getItem(SESSION_KEY),id:student.id});
+            if(data&&data.ok)removeSavedStudentPassword(student.email||"");else failed++;
+        }catch(e){console.error(e);failed++;}
+    }
+    if(failed)showAccountMessage(`${failed} account${failed===1?"":"s"} could not be deleted. Please try again.` ,"error");
+    else showAccountMessage(`Section folder "${section}" and all student accounts inside it were deleted.`);
+    await loadStudentAccounts();
+}
+
+/* =========================================================
+   STUDENT ACCOUNT CSV IMPORT / TEMPLATE
+   ========================================================= */
+let importedStudentRows = [];
+
+function downloadStudentImportTemplate(){
+    const rows = [
+        ["Name","Email","Password","Section"],
+        ["Juan Dela Cruz","juan@example.com","Student123","Grade 10 - Rizal"],
+        ["Maria Santos","maria@example.com","","Grade 10 - Rizal"]
+    ];
+    const csv = "\uFEFF" + rows.map(row => row.map(csvEscape).join(",")).join("\r\n");
+    download(csv, "Student_Accounts_Template.csv", "text/csv;charset=utf-8");
+}
+
+function generateTemporaryStudentPassword(){
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+    let result = "";
+    for(let i=0;i<10;i++) result += chars[Math.floor(Math.random()*chars.length)];
+    return result;
+}
+
+function normalizeStudentImportHeader(value){
+    return String(value || "").trim().toLowerCase().replace(/[\s_-]+/g,"");
+}
+
+function parseStudentImportText(text){
+    text = String(text || "").replace(/^\uFEFF/,"");
+    if(!text.trim()) throw new Error("The selected file is empty.");
+    if(/^\s*[\[{]/.test(text)){
+        const parsed = JSON.parse(text);
+        const list = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.students) ? parsed.students : null);
+        if(!list) throw new Error("JSON must contain an array of students.");
+        return list.map((item,i)=>({name:String(item.Name ?? item.name ?? "").trim(),email:String(item.Email ?? item.email ?? "").trim(),password:String(item.Password ?? item.password ?? "").trim(),section:String(item.Section ?? item.section ?? "").trim(),_row:i+1}));
+    }
+    if(text.includes("\t") && !text.includes(",")) text=text.replace(/\t/g,",");
+    const rows=parseCSVText(text);
+    if(rows.length<2) throw new Error("The file must contain a header row and at least one student.");
+    const headers=rows[0].map(normalizeStudentImportHeader);
+    const findCol=(...names)=>{for(const name of names){const i=headers.indexOf(name);if(i>=0)return i;}return -1;};
+    const nameCol=findCol("name","studentname","fullname");
+    const emailCol=findCol("email","emailaddress");
+    const passwordCol=findCol("password","pass");
+    const sectionCol=findCol("section","class","classname");
+    if(nameCol<0||emailCol<0) throw new Error("Required columns are Name and Email.");
+    return rows.slice(1).map((row,i)=>({name:String(row[nameCol]||"").trim(),email:String(row[emailCol]||"").trim(),password:passwordCol>=0?String(row[passwordCol]||"").trim():"",section:sectionCol>=0?String(row[sectionCol]||"").trim():"",_row:i+2}));
+}
+
+function renderStudentImportPreview(){
+    const box=$("studentImportPreview"),button=$("createImportedStudentsButton");
+    if(!box)return;
+    if(!importedStudentRows.length){box.innerHTML='<div class="import-empty">No students imported yet.</div>';if(button)button.disabled=true;return;}
+    box.innerHTML=`<table class="bulk-import-table"><thead><tr><th>#</th><th>Name</th><th>Email</th><th>Password</th><th>Section</th><th>Status</th></tr></thead><tbody>${importedStudentRows.map((student,i)=>`<tr><td>${i+1}</td><td>${escapeHTML(student.name||"—")}</td><td>${escapeHTML(student.email||"—")}</td><td class="account-password">${escapeHTML(student.password||"—")}</td><td>${escapeHTML(student.section||"Use default section")}</td><td>${student._error?`<span class="badge badge-red">${escapeHTML(student._error)}</span>`:'<span class="badge badge-green">Ready</span>'}</td></tr>`).join("")}</tbody></table>`;
+    if(button)button.disabled=!importedStudentRows.some(s=>!s._error);
+}
+
+function handleStudentImportFile(event){
+    const file=event.target.files&&event.target.files[0];if(!file)return;
+    const status=$("studentImportStatus");if(status)status.textContent="Reading "+file.name+"...";
+    const reader=new FileReader();
+    reader.onload=function(e){
+        try{
+            const rows=parseStudentImportText(e.target.result), defaultSection=String($("studentImportDefaultSection")?.value||"").trim(), seenEmails=new Set();
+            importedStudentRows=rows.filter(s=>s.name||s.email||s.section||s.password).map(student=>{
+                const item={...student};item.email=gqNormalizeEmail(item.email);
+                if(!item.name)item._error="Missing name";
+                else if(!item.email)item._error="Missing email";
+                else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item.email))item._error="Invalid email";
+                else if(seenEmails.has(item.email))item._error="Duplicate email";
+                else{seenEmails.add(item.email);item.section=item.section||defaultSection;if(!item.section)item._error="Missing section";if(!item.password)item.password=generateTemporaryStudentPassword();if(item.password.length<6)item._error="Password must be 6+ characters";}
+                return item;
+            });
+            if(!importedStudentRows.length)throw new Error("No student rows were found.");
+            const invalid=importedStudentRows.filter(s=>s._error).length;
+            if(status)status.textContent=`${importedStudentRows.length} student${importedStudentRows.length===1?"":"s"} loaded.${invalid?` ${invalid} row${invalid===1?"":"s"} need correction.`:" Ready to create accounts."}`;
+            renderStudentImportPreview();
+        }catch(error){console.error(error);importedStudentRows=[];renderStudentImportPreview();if(status)status.textContent="";alert("Unable to import student file. "+error.message);}
+        finally{event.target.value="";}
+    };
+    reader.onerror=function(){if(status)status.textContent="";alert("Unable to read the student import file.");event.target.value="";};
+    reader.readAsText(file);
+}
+
+async function createImportedStudentAccounts(){
+    if(!isTeacher()||!importedStudentRows.length)return;
+    const validRows=importedStudentRows.filter(s=>!s._error);if(!validRows.length){showAccountMessage("There are no valid student rows to create.","error");return;}
+    const button=$("createImportedStudentsButton");if(button)button.disabled=true;
+    let created=0,failed=0;
+    showAccountMessage(`Creating ${validRows.length} student account${validRows.length===1?"":"s"}...`);
+    for(const student of validRows){
+        try{
+            const data=await apiRequest("createStudentAccount",{token:sessionStorage.getItem(SESSION_KEY),name:student.name,email:student.email,password:student.password,section:student.section});
+            if(data&&data.ok){saveStudentPassword(student.email,student.password);student._created=true;created++;}
+            else{student._error=data?.message||"Could not create account";failed++;}
+        }catch(error){console.error(error);student._error="Server connection failed";failed++;}
+    }
+    await loadStudentAccounts();renderStudentImportPreview();
+    if(failed)showAccountMessage(`${created} account${created===1?"":"s"} created. ${failed} failed. Check the import preview for details.`,created?"success":"error");
+    else{showAccountMessage(`${created} student account${created===1?"":"s"} created successfully.`);importedStudentRows=[];renderStudentImportPreview();if($("studentImportStatus"))$("studentImportStatus").textContent="Import completed successfully.";}
+    if(button)button.disabled=!importedStudentRows.some(s=>!s._error);
+}
+
+function clearStudentImport(){importedStudentRows=[];const input=$("studentImportFile");if(input)input.value="";if($("studentImportStatus"))$("studentImportStatus").textContent="";renderStudentImportPreview();}
+
+async function loadStudentAccounts(){if(!isTeacher())return;const list=$("studentAccountsList");if(list)list.innerHTML='<div class="small">Loading student accounts...</div>';populateAccountSections();try{const data=await apiRequest("getStudentAccounts",{token:sessionStorage.getItem(SESSION_KEY)},"GET");if(!data||!data.ok){if(list)list.innerHTML='<div class="small">Student accounts could not be loaded. Deploy the matching backend first.</div>';return;}renderStudentAccounts(Array.isArray(data.students)?data.students:[]);}catch(e){console.error(e);if(list)list.innerHTML='<div class="small">Unable to connect to the student account service.</div>';}}
+function getSavedStudentPasswords(){
+    try{return JSON.parse(localStorage.getItem("GQ_STUDENT_PASSWORDS")||"{}");}
+    catch(e){return {}; }
+}
+function saveStudentPassword(email,password){
+    if(!email||!password)return;
+    const saved=getSavedStudentPasswords();
+    saved[gqNormalizeEmail(email)]=password;
+    localStorage.setItem("GQ_STUDENT_PASSWORDS",JSON.stringify(saved));
+}
+function removeSavedStudentPassword(email){
+    if(!email)return;
+    const saved=getSavedStudentPasswords();
+    delete saved[gqNormalizeEmail(email)];
+    localStorage.setItem("GQ_STUDENT_PASSWORDS",JSON.stringify(saved));
+}
+function renderStudentAccounts(students){
+    window.__gqStudentAccounts = Array.isArray(students) ? students : [];
+    const list=$("studentAccountsList");
+    if(!list)return;
+    if(!students.length){list.innerHTML='<div class="small">No student accounts have been created yet.</div>';return;}
+    const savedPasswords=getSavedStudentPasswords();
+    const groups={};
+    students.forEach(student=>{const section=String(student.section||"No section").trim()||"No section";(groups[section] ||= []).push(student);});
+    const sections=Object.keys(groups).sort((a,b)=>a.localeCompare(b));
+    list.innerHTML=sections.map(section=>{
+        const members=groups[section];
+        const sectionArg=encodeURIComponent(section);
+        return `<details class="account-section-folder">
+            <summary>
+                <span class="folder-title">📁 ${escapeHTML(section)}</span>
+                <span class="folder-actions">
+                    <span class="folder-count">${members.length} student${members.length===1?"":"s"}</span>
+                    <button class="btn btn-danger folder-delete-btn" type="button" title="Delete this section folder and all student accounts inside it" onclick="event.preventDefault();event.stopPropagation();deleteStudentAccountFolder(decodeURIComponent('${sectionArg}'))">Delete Folder</button>
+                </span>
+            </summary>
+            <div class="folder-accounts">
+                <div class="small" style="padding:8px 4px">Clicking this folder loads the registered students.</div>
+                ${members.map(student=>renderStudentAccountItem(student,savedPasswords)).join("")}
+            </div>
+        </details>`;
+    }).join("");
+}
+
+function renderStudentAccountItem(student,savedPasswords=getSavedStudentPasswords()){
+    const email=gqNormalizeEmail(student.email||"");
+    const password=student.password || student.displayPassword || student.plainPassword || savedPasswords[email] || "Not available";
+    const id=String(student.id||"");
+    const key='student-edit-'+encodeURIComponent(id);
+    return `<div class="account-item" id="student-account-${escapeHTML(id)}">
+        <div class="account-meta" style="flex:1">
+            <strong>${escapeHTML(student.name||"Student")}</strong>
+            <div class="small">${escapeHTML(student.email||"")}</div>
+            <div class="account-password-wrap"><span class="account-password-label">PASSWORD</span><span class="account-password-value account-password">${escapeHTML(password)}</span></div>
+        </div>
+        <div class="button-row" style="margin-top:0;justify-content:flex-end">
+            <button class="btn btn-warning" type="button" onclick="toggleStudentAccountEdit('${escapeHTML(id)}')">Edit</button>
+            <button class="btn btn-danger" type="button" title="Delete student account" onclick="deleteStudentAccount('${escapeHTML(id)}','${escapeHTML(student.email||"")}')">Delete Account</button>
+        </div>
+    </div>
+    <div id="${key}" class="student-edit-panel hidden">
+      <div class="student-edit-grid">
+        <div><label>Student Name</label><input id="editStudentName-${escapeHTML(id)}" value="${escapeHTML(student.name||"")}"></div>
+        <div><label>Email Address</label><input type="email" id="editStudentEmail-${escapeHTML(id)}" value="${escapeHTML(student.email||"")}"></div>
+        <div><label>New Password</label><input type="text" id="editStudentPassword-${escapeHTML(id)}" placeholder="Leave blank to keep current password"></div>
+        <div><label>Section</label><input id="editStudentSection-${escapeHTML(id)}" value="${escapeHTML(student.section||"")}"></div>
+        <div class="full-row button-row" style="margin-top:0">
+          <button class="btn btn-success" type="button" onclick="saveEditedStudentAccount('${escapeHTML(id)}','${escapeHTML(student.email||"")}')">Save Changes</button>
+          <button class="btn btn-secondary" type="button" onclick="toggleStudentAccountEdit('${escapeHTML(id)}')">Cancel</button>
+        </div>
+        <div class="small full-row">Changing the email or password changes the student's login credentials.</div>
+      </div>
+    </div>`;
+}
+
+function toggleStudentAccountEdit(id){
+    const el=$("student-edit-"+encodeURIComponent(String(id)));
+    if(el)el.classList.toggle("hidden");
+}
+
+async function saveEditedStudentAccount(id,oldEmail=""){
+    if(!isTeacher()||!id)return;
+    const name=$("editStudentName-"+id)?.value.trim();
+    const email=gqNormalizeEmail($("editStudentEmail-"+id)?.value||"");
+    const password=$("editStudentPassword-"+id)?.value||"";
+    const section=$("editStudentSection-"+id)?.value.trim();
+    if(!name||!email||!section){showAccountMessage("Please complete the student name, email, and section.","error");return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showAccountMessage("Please enter a valid email address.","error");return;}
+    if(password && password.length<6){showAccountMessage("Password must be at least 6 characters.","error");return;}
+    showAccountMessage("Saving student account changes...");
+    try{
+        const payload={token:sessionStorage.getItem(SESSION_KEY),id,name,email,section};
+        if(password)payload.password=password;
+        const data=await apiRequest("updateStudentAccount",payload);
+        if(!data||!data.ok){showAccountMessage(data?.message||"Could not update the student account. Make sure your deployed backend supports updateStudentAccount.","error");return;}
+        if(password)saveStudentPassword(email,password);
+        if(gqNormalizeEmail(oldEmail)!==email)removeSavedStudentPassword(oldEmail);
+        showAccountMessage("Student account updated successfully.");
+        await loadStudentAccounts();
+    }catch(e){console.error(e);showAccountMessage("Server connection failed. Please try again.","error");}
+}
+
+async function deleteStudentAccount(id,email=""){if(!isTeacher()||!id)return;if(!confirm("Delete this student account? The student will no longer be able to log in."))return;try{const data=await apiRequest("deleteStudentAccount",{token:sessionStorage.getItem(SESSION_KEY),id});if(!data||!data.ok){showAccountMessage(data?.message||"Could not delete the student account.","error");return;}removeSavedStudentPassword(email);showAccountMessage("Student account deleted.");await loadStudentAccounts();}catch(e){console.error(e);showAccountMessage("Server connection failed. Please try again.","error");}}
+
+/* =========================================================
    ADMIN NAVIGATION
 ========================================================= */
 
 function showAdminSection(section){
-
-    if(!isTeacher()){
-        openTeacherLogin();
-        return;
-    }
-
-    if(section === "records"){
-
-        $("recordsSection")
-            .classList
-            .remove("hidden");
-
-        $("editorSection")
-            .classList
-            .add("hidden");
-
-        $("recordsButton").className =
-            "btn btn-primary";
-
-        $("editorButton").className =
-            "btn btn-secondary";
-
-        renderRecords();
-
-    }else{
-
-        $("recordsSection")
-            .classList
-            .add("hidden");
-
-        $("editorSection")
-            .classList
-            .remove("hidden");
-
-        $("recordsButton").className =
-            "btn btn-secondary";
-
-        $("editorButton").className =
-            "btn btn-primary";
-
-        loadEditor();
-    }
+    if(!isTeacher()){openTeacherLogin();return;}
+    $("recordsSection")?.classList.add("hidden");$("editorSection")?.classList.add("hidden");$("accountsSection")?.classList.add("hidden");
+    if(section==="records"){$("recordsSection").classList.remove("hidden");$("recordsButton").className="btn btn-primary";$("editorButton").className="btn btn-secondary";$("accountsButton").className="btn btn-secondary";renderRecords();}
+    else if(section==="editor"){$("editorSection").classList.remove("hidden");$("recordsButton").className="btn btn-secondary";$("editorButton").className="btn btn-primary";$("accountsButton").className="btn btn-secondary";loadEditor();}
+    else if(section==="accounts"){$("accountsSection").classList.remove("hidden");$("recordsButton").className="btn btn-secondary";$("editorButton").className="btn btn-secondary";$("accountsButton").className="btn btn-primary";populateAccountSections();loadStudentAccounts();}
 }
-
 
 function renderAdminQuizTabs(){
     const container = $("adminQuizTabs");
@@ -3952,6 +4399,9 @@ function loadEditor(){
 
     $("quizInstructionsInput").value =
         quiz.instructions || "";
+
+    $("quizSectionsInput").value =
+        Array.isArray(quiz.sections) ? quiz.sections.join("\n") : "";
 
     $("quizTimerInput").value =
         Number(quiz.timerMinutes) || 0;
@@ -4040,6 +4490,28 @@ function renderQuestionEditors(){
 
             </div>
 
+            <div class="question-editor-image-wrap">
+                <label>Question Picture (optional)</label>
+                <input
+                    type="file"
+                    id="questionImage_${index}"
+                    accept="image/*"
+                    onchange="handleQuestionImageUpload(${index}, event)">
+                <div class="question-image-caption">Add a picture to this question. It will be saved with the quiz.</div>
+                <img
+                    id="questionImagePreview_${index}"
+                    class="question-editor-image-preview ${question.image ? "" : "hidden"}"
+                    src="${question.image ? escapeHTML(question.image) : ""}"
+                    alt="Question image preview">
+                <button
+                    type="button"
+                    class="btn btn-danger ${question.image ? "" : "hidden"}"
+                    id="removeQuestionImage_${index}"
+                    onclick="removeQuestionImage(${index})">
+                    Remove Picture
+                </button>
+            </div>
+
             <div id="questionSettings_${index}">
             </div>
         `;
@@ -4067,6 +4539,62 @@ function renderQuestionEditors(){
     });
 }
 
+
+function handleQuestionImageUpload(index, event){
+    const file = event.target.files && event.target.files[0];
+    if(!file) return;
+
+    if(!file.type.startsWith("image/")){
+        alert("Please select an image file.");
+        event.target.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+        const quiz = getQuiz(currentQuizNumber);
+        const question = quiz.questions[index];
+        question.image = e.target.result;
+
+        const preview = $("questionImagePreview_" + index);
+        const removeButton = $("removeQuestionImage_" + index);
+
+        if(preview){
+            preview.src = question.image;
+            preview.classList.remove("hidden");
+        }
+        if(removeButton){
+            removeButton.classList.remove("hidden");
+        }
+
+        showAdminStatus("Question picture added.");
+    };
+    reader.onerror = function(){
+        alert("Unable to read the selected image.");
+    };
+    reader.readAsDataURL(file);
+    event.target.value = "";
+}
+
+function removeQuestionImage(index){
+    const quiz = getQuiz(currentQuizNumber);
+    const question = quiz.questions[index];
+    question.image = "";
+
+    const preview = $("questionImagePreview_" + index);
+    const removeButton = $("removeQuestionImage_" + index);
+
+    if(preview){
+        preview.src = "";
+        preview.classList.add("hidden");
+    }
+    if(removeButton){
+        removeButton.classList.add("hidden");
+    }
+
+    showAdminStatus("Question picture removed.");
+}
+
 function changeQuestionType(index){
 
     const quiz =
@@ -4087,6 +4615,8 @@ function changeQuestionType(index){
 
     question.question =
         old.question || question.question;
+    question.image =
+        old.image || "";
 
     quiz.questions[index] =
         question;
@@ -4979,6 +5509,9 @@ async function saveQuiz(){
     quiz.title = $("quizTitleInput").value.trim() || "Quiz " + currentQuizNumber;
     quiz.code = $("quizCodeInput").value.trim().toUpperCase();
     quiz.instructions = $("quizInstructionsInput").value;
+    quiz.sections = [...new Set(
+        $("quizSectionsInput").value.split(/\r?\n/).map(section => section.trim()).filter(Boolean)
+    )];
     quiz.timerMinutes = Math.max(0, Math.floor(Number($("quizTimerInput").value) || 0));
     quiz.questionSelectionMode = "all";
     quiz.questionCount = 0;
@@ -5070,7 +5603,7 @@ async function publishAllQuizzes(){
     saveQuizzes();
     renderAdminQuizTabs();
     selectAdminQuiz(currentQuizNumber);
-    await loadPublishedQuizzes();
+    await loadPublishedQuizzes(true);
 
     showAdminStatus("Published " + sent + " quiz(es).");
 }
@@ -5078,7 +5611,7 @@ async function publishAllQuizzes(){
 async function refreshQuizData(){
     if(!isTeacher()) return;
 
-    const ok = await loadTeacherData();
+    const ok = await loadTeacherData(true);
     if(ok){
         renderAdminQuizTabs();
         selectAdminQuiz(currentQuizNumber);
@@ -5093,7 +5626,9 @@ async function refreshQuizData(){
 ========================================================= */
 
 function renderRecords(){
-    records[currentQuizNumber] = dedupeRecordsByAttempt(dedupeRecordsById(getRecords(currentQuizNumber)));
+    records[currentQuizNumber] = dedupeRecordsByAttempt(
+        dedupeRecordsById(getRecords(currentQuizNumber))
+    );
 
     if(!isTeacher()){
         return;
@@ -5255,150 +5790,93 @@ function renderRecords(){
             new Date(a.submittedAt)
     );
 
-    container.innerHTML = `
+    // Group quiz records into a separate folder for every class/section.
+    // Each folder contains its own student-record table.
+    const recordGroups = {};
+    filtered.forEach(record=>{
+        const section = String(record.section || "No section").trim() || "No section";
+        (recordGroups[section] ||= []).push(record);
+    });
 
-        <div class="records-wrap">
+    const recordSections = Object.keys(recordGroups).sort((a,b)=>a.localeCompare(b));
 
-        <table class="records-table">
+    container.innerHTML = recordSections.map(section=>{
+        const sectionRecords = recordGroups[section];
+        sectionRecords.sort((a,b)=>
+            new Date(b.submittedAt || b.startedAt) -
+            new Date(a.submittedAt || a.startedAt)
+        );
 
-        <thead>
-        <tr>
-            <th>Student</th>
-            <th>Email</th>
-            <th>Class / Section</th>
-            <th>Score</th>
-            <th>Security</th>
-            <th>Status</th>
-            <th>Submission</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
-        </thead>
+        const sectionArg = encodeURIComponent(section);
+        return `
+            <details class="record-section-folder">
+                <summary>
+                    <span class="record-folder-title">📁 ${escapeHTML(section)}</span>
+                    <span class="folder-actions">
+                        <span class="record-folder-count">${sectionRecords.length} record${sectionRecords.length===1?"":"s"}</span>
+                        <button class="btn btn-danger folder-delete-btn" type="button" title="Delete all quiz records in this section" onclick="event.preventDefault();event.stopPropagation();deleteRecordFolder(decodeURIComponent('${sectionArg}'))">Delete Folder</button>
+                    </span>
+                </summary>
+                <div class="record-folder-body">
+                    <div class="records-wrap">
+                        <table class="records-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Email</th>
+                                    <th>Class / Section</th>
+                                    <th>Score</th>
+                                    <th>Security</th>
+                                    <th>Status</th>
+                                    <th>Submission</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${sectionRecords.map(record=>{
+                                    const badge =
+                                        record.percentage >= 75
+                                            ? "badge-green"
+                                            : record.percentage >= 60
+                                                ? "badge-yellow"
+                                                : "badge-red";
 
-        <tbody>
+                                    return `
+                                        <tr>
+                                            <td><strong>${escapeHTML(record.student)}</strong></td>
+                                            <td>${escapeHTML(record.email || "")}</td>
+                                            <td><span class="badge badge-blue">${escapeHTML(record.section || "No section")}</span></td>
+                                            <td>
+                                                <span class="badge ${badge}">${record.percentage}%</span>
+                                                <div class="small">${record.correct}/${record.total} point(s)</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge ${Number(record.securityEvents) >= 2 ? "badge-red" : "badge-green"}">${record.securityEvents || 0}</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge ${record.automatic ? "badge-yellow" : "badge-green"}">${record.status || (record.automatic ? "Automatic" : "Manual")}</span>
+                                                <div class="small">Logins/Attempts: ${Math.max(Number(record.loginCount || 1), countStudentAttempts(getRecords(currentQuizNumber), record.email))}</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge ${record.automatic ? "badge-yellow" : "badge-green"}">${record.automatic ? "Automatic" : "Manual"}</span>
+                                            </td>
+                                            <td>${escapeHTML(formatDate(record.submittedAt || record.startedAt))}</td>
+                                            <td>
+                                                <button class="btn btn-primary" onclick="viewRecord('${record.id}')">View</button>
+                                                <button class="btn btn-danger" onclick="deleteRecord('${record.id}')">Delete</button>
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join("")}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+        `;
+    }).join("");
 
-        ${filtered.map(record=>{
-
-            const badge =
-                record.percentage >= 75
-                    ? "badge-green"
-                    : record.percentage >= 60
-                        ? "badge-yellow"
-                        : "badge-red";
-
-            return `
-
-                <tr>
-
-                    <td>
-                        <strong>
-                            ${
-                                escapeHTML(
-                                    record.student
-                                )
-                            }
-                        </strong>
-                    </td>
-
-                    <td>${escapeHTML(record.email || "")}</td>
-
-                    <td>
-                        <span class="badge badge-blue">
-                            ${
-                                escapeHTML(
-                                    record.section
-                                )
-                            }
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <span class="badge ${badge}">
-                            ${
-                                record.percentage
-                            }%
-                        </span>
-
-                        <div class="small">
-                            ${
-                                record.correct
-                            }/${record.total} point(s)
-                        </div>
-
-                    </td>
-
-                    <td>
-
-                        <span class="badge ${
-                            Number(
-                                record.securityEvents
-                            ) >= 2
-                                ? "badge-red"
-                                : "badge-green"
-                        }">
-
-                            ${
-                                record.securityEvents || 0
-                            }
-
-                        </span>
-
-                    </td>
-
-                    <td>
-
-                        <span class="badge ${
-                            record.automatic
-                                ? "badge-yellow"
-                                : "badge-green"
-                        }">
-
-                            ${
-                                record.status || (record.automatic ? "Automatic" : "Manual")
-                            }
-
-                        </span>
-                        <div class="small">Logins: ${countStudentAttempts(getRecords(currentQuizNumber), record.email)}</div>
-
-                    </td>
-
-                    <td>
-                        ${
-                            escapeHTML(
-                                formatDate(
-                                    record.submittedAt || record.startedAt
-                                )
-                            )
-                        }
-                    </td>
-
-                    <td>
-
-                        <button
-                            class="btn btn-primary"
-                            onclick="viewRecord('${record.id}')">
-                            View
-                        </button>
-                         <button
-                             class="btn btn-danger"
-                             onclick="deleteRecord('${record.id}')">
-                             Delete
-                         </button>
-
-                    </td>
-
-                </tr>
-            `;
-
-        }).join("")}
-
-        </tbody>
-
-        </table>
-
-        </div>
-    `;
 }
 
 
@@ -5765,6 +6243,210 @@ function exportQuiz(){
     );
 }
 
+
+function parseCSVText(text){
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let quoted = false;
+
+    for(let i=0; i<text.length; i++){
+        const ch = text[i];
+
+        if(ch === '"'){
+            if(quoted && text[i + 1] === '"'){
+                cell += '"';
+                i++;
+            }else{
+                quoted = !quoted;
+            }
+        }else if(ch === "," && !quoted){
+            row.push(cell);
+            cell = "";
+        }else if((ch === "\n" || ch === "\r") && !quoted){
+            if(ch === "\r" && text[i + 1] === "\n") i++;
+            row.push(cell);
+            if(row.some(v => String(v).trim() !== "")) rows.push(row);
+            row = [];
+            cell = "";
+        }else{
+            cell += ch;
+        }
+    }
+
+    if(cell !== "" || row.length){
+        row.push(cell);
+        if(row.some(v => String(v).trim() !== "")) rows.push(row);
+    }
+
+    return rows;
+}
+
+function csvEscape(value){
+    const text = String(value == null ? "" : value);
+    return `"${text.replace(/"/g, '""')}"`;
+}
+
+function downloadQuizCsvTemplate(){
+    const rows = [
+        ["question","option_a","option_b","option_c","option_d","answer","type","image"],
+        ["A plan is best defined as:","A police report","An organized schedule of activities to achieve objectives","A law enforcement policy","A budget proposal","B","multiple",""]
+    ];
+
+    const csv = rows.map(row => row.map(csvEscape).join(",")).join("\r\n");
+    download(csv, "Quiz_Questions_Template.csv", "text/csv;charset=utf-8");
+}
+
+function normalizeQuestionType(value){
+    const v = String(value || "").trim().toLowerCase();
+    if(v === "identification" || v === "identify" || v === "id") return "identification";
+    if(v === "enumeration" || v === "enum") return "enumeration";
+    return "multiple";
+}
+
+function resolveCsvAnswer(value, options){
+    const raw = String(value || "").trim();
+    if(!raw) return 0;
+
+    const upper = raw.toUpperCase();
+    const letterMatch = upper.match(/^[A-D]$/);
+    if(letterMatch){
+        const idx = upper.charCodeAt(0) - 65;
+        return idx < options.length ? idx : 0;
+    }
+
+    const number = Number(raw);
+    if(Number.isInteger(number)){
+        if(number >= 0 && number < options.length) return number;
+        if(number >= 1 && number <= options.length) return number - 1;
+    }
+
+    const exact = options.findIndex(o => String(o).trim().toLowerCase() === raw.toLowerCase());
+    return exact >= 0 ? exact : 0;
+}
+
+function importQuestionsCSV(event){
+    const file = event.target.files && event.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        try{
+            let text = String(e.target.result || "").replace(/^\uFEFF/, "");
+            if(text.includes("\t") && !text.includes(",")){
+                text = text.replace(/\t/g, ",");
+            }
+
+            const rows = parseCSVText(text);
+            if(rows.length < 2){
+                throw new Error("The CSV file has no question rows.");
+            }
+
+            const headers = rows[0].map(h => String(h).trim().toLowerCase());
+            const col = name => headers.indexOf(name);
+
+            const questionCol = col("question");
+            if(questionCol < 0){
+                throw new Error('CSV must contain a "question" column.');
+            }
+
+            const quiz = getQuiz(currentQuizNumber);
+            let added = 0;
+
+            rows.slice(1).forEach(row=>{
+                const questionText = String(row[questionCol] || "").trim();
+                if(!questionText) return;
+
+                const type = normalizeQuestionType(
+                    col("type") >= 0 ? row[col("type")] : "multiple"
+                );
+
+                const options = ["a","b","c","d"]
+                    .map(letter=>{
+                        const idx = col("option_" + letter);
+                        return idx >= 0 ? String(row[idx] || "").trim() : "";
+                    })
+                    .filter(Boolean);
+
+                const imageIdx = col("image");
+                const image = imageIdx >= 0 ? String(row[imageIdx] || "").trim() : "";
+
+                if(type === "multiple"){
+                    const q = createQuestion("multiple");
+                    q.question = questionText;
+                    q.image = image;
+                    if(options.length >= 2){
+                        q.options = options;
+                        const answerIdx = col("answer") >= 0 ? row[col("answer")] : "";
+                        q.answer = resolveCsvAnswer(answerIdx, options);
+                    }
+                    quiz.questions.push(q);
+                    added++;
+                    return;
+                }
+
+                if(type === "identification"){
+                    const q = createQuestion("identification");
+                    q.question = questionText;
+                    q.image = image;
+                    const answersIdx = col("answers") >= 0 ? row[col("answers")] : (col("answer") >= 0 ? row[col("answer")] : "");
+                    q.acceptedAnswers = String(answersIdx || "Correct answer")
+                        .split("|")
+                        .map(v=>v.trim())
+                        .filter(Boolean);
+                    quiz.questions.push(q);
+                    added++;
+                    return;
+                }
+
+                const q = createQuestion("enumeration");
+                q.question = questionText;
+                q.image = image;
+                const answersIdx = col("answers") >= 0 ? row[col("answers")] : (col("answer") >= 0 ? row[col("answer")] : "");
+                const answers = String(answersIdx || "")
+                    .split("|")
+                    .map(v=>v.trim())
+                    .filter(Boolean);
+                if(answers.length){
+                    q.requiredAnswers = answers;
+                    q.studentAnswerCount = Math.min(q.studentAnswerCount || answers.length, answers.length);
+                }
+                quiz.questions.push(q);
+                added++;
+            });
+
+            if(!added){
+                throw new Error("No valid questions were found in the CSV.");
+            }
+
+            saveQuizzes();
+            renderQuestionEditors();
+            renderHomeQuizzes();
+            showAdminStatus(
+                added + " question" + (added === 1 ? "" : "s") + " imported into Quiz " + currentQuizNumber + "."
+            );
+
+            if(col("answer") < 0){
+                alert(
+                    added + " question" + (added === 1 ? "" : "s") +
+                    " imported successfully. Your CSV has no 'answer' column, so Multiple Choice questions default to option A. You can change the correct answer in the Quiz Editor."
+                );
+            }
+        }catch(error){
+            console.error(error);
+            alert("Unable to import CSV questions. " + error.message);
+        }
+    };
+
+    reader.onerror = function(){
+        alert("Unable to read the CSV file.");
+    };
+
+    reader.readAsText(file);
+    event.target.value = "";
+}
+
 function importQuiz(event){
 
     const file =
@@ -5966,6 +6648,40 @@ async function deleteRecord(id){
         }
     }
 
+    startLiveMonitor();
+}
+
+async function deleteRecordFolder(section){
+    if(!isTeacher()||!section)return;
+    const recordsForQuiz=getRecords(currentQuizNumber);
+    const members=recordsForQuiz.filter(r=>String(r.section||"No section").trim()===section);
+    if(!members.length){renderRecords();return;}
+    const emails=[...new Set(members.map(r=>String(r.email||"").trim().toLowerCase()).filter(Boolean))];
+    if(!confirm(`Delete the "${section}" folder and all ${members.length} quiz record${members.length===1?"":"s"} inside it?\n\nThis will delete all attempts for ${emails.length} student${emails.length===1?"":"s"} in this quiz and reset their attempt limits.\n\nThis action cannot be undone.`))return;
+    clearInterval(liveMonitorInterval);
+    showAdminStatus(`Deleting records in ${section}...`);
+    let failed=[];
+    for(const record of members){
+        try{
+            const response=await sendToGoogleSheets(record,"delete");
+            if(!response||!response.ok)failed.push(record.id);
+        }catch(e){console.error(e);failed.push(record.id);}
+    }
+    if(failed.length){
+        showAdminStatus("Some records could not be deleted.");
+        alert(`${failed.length} record${failed.length===1?"":"s"} could not be deleted. Please deploy the latest backend and try again.`);
+        startLiveMonitor();
+        return;
+    }
+    records[currentQuizNumber]=recordsForQuiz.filter(r=>String(r.section||"No section").trim()!==section);
+    emails.forEach(email=>{if(typeof gqClearAttempt==="function")gqClearAttempt(email,currentQuizNumber);});
+    saveRecords();
+    currentRecordId=null;
+    closeRecordDetail();
+    renderRecords();
+    showAdminStatus(`Section folder "${section}" and its quiz records were deleted.`);
+    const verify=await loadRecordsFromGoogleSheets(currentQuizNumber);
+    if(verify){records[currentQuizNumber]=verify;saveRecords();renderRecords();}
     startLiveMonitor();
 }
 
@@ -6223,60 +6939,55 @@ function gqClearAttempt(email, quizNumber){
    protection across devices. */
 async function gqCheckBeforeStart(email, quizNumber){
     email = gqNormalizeEmail(email);
+    quizNumber = Number(quizNumber);
     if(!email) return {ok:false, message:"Please enter your email address."};
 
     /*
-       NEW ATTEMPT RULE — SERVER AUTHORITATIVE
+       SERVER-AUTHORITATIVE 2-ATTEMPT RULE
+       0 server records = Attempt 1
+       1 server record  = Attempt 2
+       2+ server records = BLOCK
 
-       Every successful start from the student login screen consumes one
-       attempt. An active attempt is NOT automatically resumed.
-
-       Attempt 1 = first login/start
-       Attempt 2 = second login/start, even if Attempt 1 is still in progress
-       Attempt 3 = blocked
-
-       If the teacher deletes all records for this email + quiz, the server
-       returns zero attempts and the student is reset to Attempt 1.
+       The server is checked BEFORE localStorage so that when a teacher
+       deletes the student's records, a stale browser copy cannot keep the
+       student blocked. A zero-record server response also clears the local
+       attempt marker immediately.
     */
     try{
         const server = await apiRequest("checkStudentAttempt", {
             teacherId: currentStudentTeacherId,
-            quizNumber: Number(quizNumber),
+            quizNumber,
             email
         }, "GET");
 
         if(server && server.ok){
-            if(Number(server.attemptCount || 0) === 0){
-                gqClearAttempt(email, quizNumber);
+            const attemptCount = Number(server.attemptCount || 0);
+
+            if(server.reason === "max_attempts" || attemptCount >= 2){
                 return {
-                    ok:true,
-                    newAttempt:true,
-                    resetByDeletion:true,
-                    attemptNumber:1
+                    ok:false,
+                    message:server.message || "You have already used both attempts for this quiz. You cannot take it again."
                 };
             }
 
-            if(server.reason === "max_attempts"){
-                return {ok:false, message:server.message};
+            // Teacher deleted the student's records: completely reset the
+            // local browser attempt state as well.
+            if(attemptCount === 0){
+                gqClearAttempt(email, quizNumber);
+                return {ok:true, newAttempt:true, resetByDeletion:true, attemptNumber:1};
             }
 
-            // IMPORTANT: Never resume the previous active attempt.
-            // A new login is a new attempt.
+            // Server says exactly one attempt has been used. Allow Attempt 2.
             return {
                 ok:true,
                 newAttempt:true,
-                attemptNumber:Number(
-                    server.attemptNumber ||
-                    (Number(server.attemptCount || 0) + 1)
-                )
+                attemptNumber:2
             };
         }
     }catch(error){
         console.warn("Student attempt server check failed.", error);
     }
 
-    // Do not fall back to localStorage to grant an attempt. The server is
-    // authoritative for the two-attempt limit.
     return {
         ok:false,
         message:"Unable to verify your quiz attempts. Please check your internet connection and try again."
