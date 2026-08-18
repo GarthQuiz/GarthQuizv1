@@ -1302,6 +1302,13 @@ Download CSV Template
     </div>
 </div>
 
+<div class="button-row" style="align-items:center;margin-bottom:12px">
+    <button class="btn btn-secondary" type="button" onclick="toggleSelectAllQuestions(true)">Select All</button>
+    <button class="btn btn-secondary" type="button" onclick="toggleSelectAllQuestions(false)">Clear Selection</button>
+    <button id="deleteSelectedQuestionsBtn" class="btn btn-danger" type="button" onclick="deleteSelectedQuestions()" disabled>Delete Selected</button>
+    <span id="selectedQuestionCount" class="small">0 selected</span>
+</div>
+
 <div id="questionEditors"></div>
 
 </div>
@@ -4440,6 +4447,13 @@ function renderQuestionEditors(){
             <div class="question-editor-header">
 
                 <div style="display:flex;align-items:center;gap:10px">
+                    <input
+                        type="checkbox"
+                        class="question-select-checkbox"
+                        data-question-index="${index}"
+                        onchange="updateSelectedQuestionCount()"
+                        style="width:18px;height:18px;flex:0 0 18px;margin:0;accent-color:var(--primary)"
+                        aria-label="Select Question ${index + 1}">
                     <h3 style="margin:0">
                         Question ${index + 1}
                     </h3>
@@ -5325,6 +5339,89 @@ function addQuestion(){
     showAdminStatus(
         "New Multiple Choice question added."
     );
+}
+
+function getSelectedQuestionIndexes(){
+    return Array.from(document.querySelectorAll(".question-select-checkbox:checked"))
+        .map(function(cb){ return Number(cb.dataset.questionIndex); })
+        .filter(function(index){ return Number.isInteger(index); });
+}
+
+function updateSelectedQuestionCount(){
+    const selected = getSelectedQuestionIndexes();
+    const count = selected.length;
+    const countEl = $("selectedQuestionCount");
+    const deleteBtn = $("deleteSelectedQuestionsBtn");
+
+    if(countEl) countEl.textContent = count + " selected";
+    if(deleteBtn){
+        deleteBtn.disabled = count === 0;
+        deleteBtn.style.opacity = count === 0 ? "0.55" : "1";
+        deleteBtn.style.cursor = count === 0 ? "not-allowed" : "pointer";
+    }
+}
+
+function toggleSelectAllQuestions(checked){
+    document.querySelectorAll(".question-select-checkbox").forEach(function(cb){
+        cb.checked = !!checked;
+    });
+    updateSelectedQuestionCount();
+}
+
+async function deleteSelectedQuestions(){
+    const selected = getSelectedQuestionIndexes();
+
+    if(!selected.length){
+        alert("Please select at least one question to delete.");
+        return;
+    }
+
+    const quiz = getQuiz(currentQuizNumber);
+
+    if(!confirm(
+        "Delete " + selected.length + " selected question" +
+        (selected.length === 1 ? "" : "s") + "?\n\n" +
+        "This will also save the deletion online."
+    )){
+        return;
+    }
+
+    selected
+        .sort((a,b) => b-a)
+        .forEach(index => {
+            if(index >= 0 && index < quiz.questions.length){
+                quiz.questions.splice(index, 1);
+            }
+        });
+
+    // Update the existing local quiz data first.
+    saveQuizzes();
+    renderQuestionEditors();
+    renderHomeQuizzes();
+    updateSelectedQuestionCount();
+
+    // Use the existing online-save function so the deletion
+    // is persisted to the teacher's online quiz.
+    try{
+        await saveQuiz();
+
+        showAdminStatus(
+            selected.length + " question" +
+            (selected.length === 1 ? "" : "s") +
+            " deleted and saved online."
+        );
+    }catch(error){
+        console.error(error);
+        showAdminStatus(
+            selected.length + " question" +
+            (selected.length === 1 ? "" : "s") +
+            " deleted locally, but the online save failed."
+        );
+        alert(
+            "The questions were deleted locally, but the online save failed. " +
+            "Please check your connection and click Save Quiz Online."
+        );
+    }
 }
 
 function deleteQuestion(index){
