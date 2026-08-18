@@ -301,6 +301,9 @@ select:focus{
 .record-folder-title{display:flex;align-items:center;gap:9px}
 .record-folder-count{font-size:12px;color:var(--muted);font-weight:800}
 .record-folder-body{padding:10px}
+.record-section-folder summary > .folder-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.record-section-folder summary .folder-delete-btn{flex:0 0 auto}
+
 .account-password-label{font-size:12px;color:var(--muted);font-weight:800}
 .account-password-value{background:#f1f5f9;border:1px solid var(--border);border-radius:8px;padding:6px 9px;word-break:break-all}
 .bulk-import-card{margin-top:20px;border:1px solid var(--border);border-radius:14px;background:#fff;padding:18px}
@@ -3205,18 +3208,36 @@ async function loadRecordsFromGoogleSheets(quizNumber){
 async function refreshRecordsFromGoogleSheets(){
     if(!isTeacher()) return false;
 
-    const remote = await loadRecordsFromGoogleSheets(currentQuizNumber);
-    if(remote === null){
+    const openRecordFolders = getOpenRecordFolders_();
+
+    try{
+        const remote = await loadRecordsFromGoogleSheets(currentQuizNumber);
+
+        if(remote === null){
+            renderRecords();
+            restoreOpenRecordFolders_(openRecordFolders);
+            showAdminStatus("Could not load the latest student records.");
+            return false;
+        }
+
+        records[currentQuizNumber] =
+            dedupeRecordsByAttempt(
+                dedupeRecordsById(remote)
+            );
+
+        saveRecords();
         renderRecords();
+        restoreOpenRecordFolders_(openRecordFolders);
+        showAdminStatus("Student records refreshed.");
+        return true;
+
+    }catch(error){
+        console.error("refreshRecordsFromGoogleSheets failed:", error);
+        renderRecords();
+        restoreOpenRecordFolders_(openRecordFolders);
         showAdminStatus("Could not load the latest student records.");
         return false;
     }
-
-    records[currentQuizNumber] = dedupeRecordsByAttempt(dedupeRecordsById(remote));
-    saveRecords();
-    renderRecords();
-    showAdminStatus("Student records refreshed.");
-    return true;
 }
 
 /* =========================================================
@@ -3234,17 +3255,43 @@ function syncInProgressActivity(action,currentQuestion){
     activitySyncTimer=setTimeout(()=>sendToGoogleSheets(record,"save").catch(()=>{}),1200);
 }
 function startLiveMonitor(){
-    clearInterval(liveMonitorInterval); if(!isTeacher()) return;
-    liveMonitorInterval=setInterval(async()=>{
-        const remote=await loadRecordsFromGoogleSheets(currentQuizNumber);
-        if(remote){
-            const clean = dedupeRecordsByAttempt(dedupeRecordsById(remote));
-            records[currentQuizNumber]=clean;
-            saveRecords();
-            renderRecords();
-            renderLiveStudents(clean);
+    clearInterval(liveMonitorInterval);
+
+    if(!isTeacher()) return;
+
+    liveMonitorInterval = setInterval(async()=>{
+        const openRecordFolders = getOpenRecordFolders_();
+
+        try{
+            const remote = await loadRecordsFromGoogleSheets(currentQuizNumber);
+
+            if(remote){
+                const clean =
+                    dedupeRecordsByAttempt(
+                        dedupeRecordsById(remote)
+                    );
+
+                records[currentQuizNumber] = clean;
+                saveRecords();
+
+                renderRecords();
+                restoreOpenRecordFolders_(openRecordFolders);
+                renderLiveStudents(clean);
+            }
+
+            const st = $("liveMonitorStatus");
+            if(st){
+                st.textContent =
+                    "Updated " + new Date().toLocaleTimeString();
+            }
+
+        }catch(error){
+            console.error("Live student-record refresh failed:", error);
+
+            // Keep the existing screen and folder state when the server
+            // temporarily fails. Do not destroy the teacher's open folder.
+            restoreOpenRecordFolders_(openRecordFolders);
         }
-        const st=$("liveMonitorStatus"); if(st) st.textContent="Updated "+new Date().toLocaleTimeString();
     },8000);
 }
 function renderLiveStudents(all){
@@ -5722,7 +5769,51 @@ async function refreshQuizData(){
    RECORDS
 ========================================================= */
 
+/* =========================================================
+   STUDENT RECORD FOLDER STATE
+   ========================================================= */
+
+function getOpenRecordFolders_(){
+    const open = {};
+
+    document
+        .querySelectorAll(".record-section-folder[open]")
+        .forEach(folder=>{
+            const title = folder.querySelector(".record-folder-title");
+            if(!title) return;
+
+            const section = title.textContent
+                .replace(/^📁\s*/, "")
+                .trim();
+
+            if(section) open[section] = true;
+        });
+
+    return open;
+}
+
+function restoreOpenRecordFolders_(open){
+    if(!open) return;
+
+    document
+        .querySelectorAll(".record-section-folder")
+        .forEach(folder=>{
+            const title = folder.querySelector(".record-folder-title");
+            if(!title) return;
+
+            const section = title.textContent
+                .replace(/^📁\s*/, "")
+                .trim();
+
+            if(section && open[section]){
+                folder.open = true;
+            }
+        });
+}
+
 function renderRecords(){
+    const openRecordFolders = getOpenRecordFolders_();
+
     records[currentQuizNumber] = dedupeRecordsByAttempt(
         dedupeRecordsById(getRecords(currentQuizNumber))
     );
@@ -5974,6 +6065,8 @@ function renderRecords(){
         `;
     }).join("");
 
+    // Re-open any section folders that were open before the refresh.
+    restoreOpenRecordFolders_(openRecordFolders);
 }
 
 
